@@ -1,36 +1,21 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import SocketContext from '../Context/SocketContext';
-import AppContext from '../Context/AppContext';
 import SocketMessageHandler from './SocketMessageHandler';
 
 const SocketManager = () => {
-    let { sendSocket, receiveSocket, onClose } = useContext(SocketContext);
-    const { setConnected } = useContext(AppContext);
+    const [message, setMessage] = useState();
+    const { socket, setOnMessage, setOnOpen } = useContext(SocketContext);
 
-    // sendSocket.setOnOpen = () => {
-    //     console.log("OK KEATON")
-    //     sendSocket.socket.send('context');
-    // }
+    setOnOpen(() => {
+        socket.send('context');
+    });
 
-    // console.log("KEATON", sendSocket);
+    setOnMessage((message) => {
+        const data = JSON.parse(message.data)
+        setMessage(data);
+    });
 
-    // useEffect(() => {
-    //     if (sendSocket.isConnected) sendSocket.socket.send('context');
-    // }, [sendSocket.isConnected])
-
-    // sendSocket.onopen = () => {
-    //     sendSocket.send("context");
-    // }
-
-    onClose = () => {
-        setConnected(false);
-    }
-
-    // receiveSocket.onclose = () => {
-    //     setConnected(false);
-    // }
-
-    return <SocketMessageHandler />;
+    return <SocketMessageHandler message={message} />;
 }
 
 export default SocketManager;

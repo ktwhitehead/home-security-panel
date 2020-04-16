@@ -4,13 +4,13 @@ import AppContext from '../../Context/AppContext';
 import SocketContext from '../../Context/SocketContext';
 
 const ActionButtons = () => {
-    const { sendSocket } = useContext(SocketContext);
+    const { socket } = useContext(SocketContext);
     const { status } = useContext(AppContext);
 
     if (status === 'disarmed') {
         return (
             <>
-                <Button text="Arm Stay" primary onClick={() => sendSocket.send("arm")} />
+                <Button text="Arm Stay" primary onClick={() => socket.send("arm")} />
                 <Button text="Arm Away" />
             </>
         )
@@ -18,7 +18,7 @@ const ActionButtons = () => {
 
     if (status === 'armed') {
         return (
-            <Button text="Disarm" primary onClick={() => sendSocket.send('disarm')} />
+            <Button text="Disarm" primary onClick={() => socket.send('disarm')} />
         )
     }
 }

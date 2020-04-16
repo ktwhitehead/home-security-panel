@@ -1,13 +1,12 @@
 import { useContext, useEffect } from 'react';
-import SocketContext from '../Context/SocketContext';
 import AppContext from '../Context/AppContext';
 
-const SocketMessageHandler = () => {
-    let { receiveSocket, onMessage, message } = useContext(SocketContext);
+const SocketMessageHandler = ({ message }) => {
     const { setStatus, setAlert, setConnected, setAlertMessage } = useContext(AppContext);
 
     useEffect(() => {
         if (message === undefined) return;
+
         if (message.action === 'context') {
             setStatus(message.status);
             setAlert(message.alert);
