@@ -48,25 +48,30 @@ function useWebSocket(url) {
         newSocket.onclose = (event) => {
             onClose.current(event);
             setConnected(false);
+            console.log('WebSocket disconnected.')
             if (isReconnectionEnable.current)
                 setTimeout(() => {
-                    console.log("** web socket reconnecting onClose **");
+                    console.log("Websocket attempting to reconnect.");
                     reconnect();
                 }, reconnectInterval.current);
         }
         setSocket(newSocket);
     }, [url]);
 
-    // use this code in parrent component to connect 
-    // OR uncomment this to connect automatically
     useEffect(() => {
         reconnect()
     }, [reconnect]);
 
     return {
-        socket, reconnect, isConnected, 
-        setReconnectionEnable, setReconnectInterval,
-        setOnOpen, setOnMessage, setOnClose, setOnError
+        socket,
+        reconnect,
+        isConnected, 
+        setReconnectionEnable,
+        setReconnectInterval,
+        setOnOpen,
+        setOnMessage,
+        setOnClose,
+        setOnError
     }
 }
 

@@ -24,7 +24,7 @@ const App = () => {
                   const { attributes, page } = route;
                   const Page = pages[page];
                   return (
-                      <Route key={`route-${attributes.page}`} {...attributes} component={Page} />
+                    <Route key={`route-${attributes.page}`} {...attributes} component={Page} />
                   )
                 })}
               </Switch>

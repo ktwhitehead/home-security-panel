@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import AppContext from '../Context/AppContext';
 
 const SocketMessageHandler = ({ message }) => {
-    const { setStatus, setAlert, setConnected, setAlertMessage } = useContext(AppContext);
+    const { setStatus, setAlert, setAlertMessage } = useContext(AppContext);
 
     useEffect(() => {
         if (message === undefined) return;
@@ -10,7 +10,6 @@ const SocketMessageHandler = ({ message }) => {
         if (message.action === 'context') {
             setStatus(message.status);
             setAlert(message.alert);
-            setConnected(true);
             return;
         }
 
