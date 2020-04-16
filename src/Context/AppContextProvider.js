@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
+import React, { useState } from 'react';
 import AppContext from './AppContext';
 
 const AppContextProvider = ({children}) => {
