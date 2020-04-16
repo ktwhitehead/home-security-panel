@@ -1,14 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import SocketContext from '../Context/SocketContext';
 import AppContext from '../Context/AppContext';
 
 const SocketMessageHandler = () => {
-    const { receiveSocket } = useContext(SocketContext);
+    let { receiveSocket, onMessage, message } = useContext(SocketContext);
     const { setStatus, setAlert, setConnected, setAlertMessage } = useContext(AppContext);
 
-    receiveSocket.onmessage = event => {
-        const message = JSON.parse(event.data);
-
+    useEffect(() => {
+        if (message === undefined) return;
         if (message.action === 'context') {
             setStatus(message.status);
             setAlert(message.alert);
@@ -29,7 +28,7 @@ const SocketMessageHandler = () => {
         }
 
         console.warn("UNKNOWN MESSAGE", message);
-    }
+    }, [message]);
 
     return null;
 }
