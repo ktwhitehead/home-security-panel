@@ -34,7 +34,7 @@ const PinPad = ({action}) => {
             <Header>
                 <Close style={{visibility: 'hidden'}}>x</Close>
                 <Message>{errorMessage}</Message>
-                <Close onClick={() => setDisplayPinPad(false)}>x</Close>
+                <Close onClick={() => { setErrorMessage(); setDisplayPinPad(false)} }>x</Close>
             </Header>
             <Body>
                 <Pin>
