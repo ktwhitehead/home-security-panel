@@ -6,6 +6,8 @@ const AppContextProvider = ({children}) => {
     const [alert, setAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState();
     const [connected, setConnected] = useState(false);
+    const [displayPinPad, setDisplayPinPad] = useState(false);
+    const [pin, setPin] = useState('');
 
     const context = {
         connected,
@@ -15,7 +17,11 @@ const AppContextProvider = ({children}) => {
         alert,
         setAlert,
         alertMessage,
-        setAlertMessage
+        setAlertMessage,
+        displayPinPad,
+        setDisplayPinPad,
+        pin,
+        setPin
     };
 
     return <AppContext.Provider value={context}>{children}</AppContext.Provider>

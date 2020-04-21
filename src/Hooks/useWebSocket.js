@@ -55,6 +55,9 @@ function useWebSocket(url) {
                     reconnect();
                 }, reconnectInterval.current);
         }
+        newSocket.sendMessage = (message) => {
+            newSocket.send(JSON.stringify(message));
+        }
         setSocket(newSocket);
     }, [url]);
 

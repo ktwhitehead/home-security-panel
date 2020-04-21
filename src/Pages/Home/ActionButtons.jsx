@@ -1,24 +1,26 @@
 import React, { useContext } from 'react';
 import Button from '../../Components/Button';
 import AppContext from '../../Context/AppContext';
-import SocketContext from '../../Context/SocketContext';
+import PinPad from '../../Components/PinPad';
 
 const ActionButtons = () => {
-    const { socket } = useContext(SocketContext);
-    const { status } = useContext(AppContext);
+    const { status, setDisplayPinPad } = useContext(AppContext);
 
     if (status === 'disarmed') {
         return (
             <>
-                <Button text="Arm Stay" primary onClick={() => socket.send("arm")} />
-                <Button text="Arm Away" />
+                <PinPad action={'arm'} />
+                <Button text="Arm Stay" primary onClick={() => setDisplayPinPad(true)} />
             </>
         )
     }
 
     if (status === 'armed') {
         return (
-            <Button text="Disarm" primary onClick={() => socket.send('disarm')} />
+            <>
+                <PinPad action={'disarm'} />
+                <Button text="Disarm" primary onClick={() => setDisplayPinPad(true)} />
+            </>
         )
     }
 }
