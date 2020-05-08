@@ -1,0 +1,540 @@
+[
+    {
+        "id": "9a16543d.7ea5d8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6507fd95.9e76f4",
+        "type": "mqtt in",
+        "z": "9a16543d.7ea5d8",
+        "name": "",
+        "topic": "tele/rfbridge/RESULT",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "cdeaaf1a.ed1a8",
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "cdc3d752.85d948",
+                "da764640.ca5a38"
+            ]
+        ]
+    },
+    {
+        "id": "9cd43123.17e2a",
+        "type": "mosca in",
+        "z": "9a16543d.7ea5d8",
+        "mqtt_port": 1883,
+        "mqtt_ws_port": 8080,
+        "name": "",
+        "username": "",
+        "password": "",
+        "dburl": "",
+        "x": 130,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cdc3d752.85d948",
+        "type": "function",
+        "z": "9a16543d.7ea5d8",
+        "name": "get rf code",
+        "func": "var payload = JSON.parse(msg.payload);\nvar rf_code = payload.RfReceived.Data;\n\nreturn { rf_code: rf_code };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 120,
+        "wires": [
+            [
+                "45a91f40.ba5d1"
+            ]
+        ]
+    },
+    {
+        "id": "639bdf74.b8d8e",
+        "type": "switch",
+        "z": "9a16543d.7ea5d8",
+        "name": "armed?",
+        "property": "is_armed",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 320,
+        "y": 320,
+        "wires": [
+            [
+                "a98433ee.03c71",
+                "3b8cb504.0e643a"
+            ],
+            [
+                "80167304.f5f4f"
+            ]
+        ]
+    },
+    {
+        "id": "a98433ee.03c71",
+        "type": "function",
+        "z": "9a16543d.7ea5d8",
+        "name": "alarm is inactive",
+        "func": "console.log(\"KEATON2\", msg)\nreturn { payload: msg.device_message };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 260,
+        "wires": [
+            [
+                "aa26d677.602de8"
+            ]
+        ]
+    },
+    {
+        "id": "45a91f40.ba5d1",
+        "type": "function",
+        "z": "9a16543d.7ea5d8",
+        "name": "get device message",
+        "func": "var rf_code = msg.rf_code;\nvar messages = global.get('device_messages');\nvar message = messages[rf_code];\n\n\nreturn { device_message: message };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 120,
+        "wires": [
+            [
+                "3003ebcc.7c4804"
+            ]
+        ]
+    },
+    {
+        "id": "aa26d677.602de8",
+        "type": "play audio",
+        "z": "9a16543d.7ea5d8",
+        "name": "notification",
+        "voice": "3",
+        "x": 710,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "752b326f.c58c3c",
+        "type": "play audio",
+        "z": "9a16543d.7ea5d8",
+        "d": true,
+        "name": "alarm",
+        "voice": "3",
+        "x": 850,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "3003ebcc.7c4804",
+        "type": "switch",
+        "z": "9a16543d.7ea5d8",
+        "name": "valid?",
+        "property": "device_message",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "f3e6e6d9.6ddd08"
+            ],
+            [
+                "639bdf74.b8d8e"
+            ]
+        ]
+    },
+    {
+        "id": "3f0cedd4.f41a32",
+        "type": "play audio",
+        "z": "9a16543d.7ea5d8",
+        "d": true,
+        "name": "",
+        "voice": "0",
+        "x": 650,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f3e6e6d9.6ddd08",
+        "type": "function",
+        "z": "9a16543d.7ea5d8",
+        "name": "unknown device",
+        "func": "\nreturn { payload: \"Unknown device code\" }",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 200,
+        "wires": [
+            [
+                "3f0cedd4.f41a32"
+            ]
+        ]
+    },
+    {
+        "id": "48d2f4fc.c0f51c",
+        "type": "file in",
+        "z": "9a16543d.7ea5d8",
+        "d": true,
+        "name": "alarm.wav",
+        "filename": "C:\\Users\\User\\Desktop\\alarm.wav",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 670,
+        "y": 540,
+        "wires": [
+            [
+                "752b326f.c58c3c"
+            ]
+        ]
+    },
+    {
+        "id": "ae2dfde5.24b52",
+        "type": "trigger",
+        "z": "9a16543d.7ea5d8",
+        "op1": "",
+        "op2": "",
+        "op1type": "pay",
+        "op2type": "pay",
+        "duration": "-10",
+        "extend": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "name": "",
+        "x": 510,
+        "y": 460,
+        "wires": [
+            [
+                "1e7540e1.cb334f",
+                "48d2f4fc.c0f51c"
+            ]
+        ]
+    },
+    {
+        "id": "1e7540e1.cb334f",
+        "type": "play audio",
+        "z": "9a16543d.7ea5d8",
+        "name": "",
+        "voice": "3",
+        "x": 810,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "80167304.f5f4f",
+        "type": "switch",
+        "z": "9a16543d.7ea5d8",
+        "name": "already alerting?",
+        "property": "is_alerting",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 360,
+        "wires": [
+            [
+                "f5cf4e36.879d2"
+            ]
+        ]
+    },
+    {
+        "id": "f5cf4e36.879d2",
+        "type": "change",
+        "z": "9a16543d.7ea5d8",
+        "name": "is_alerting = true",
+        "rules": [
+            {
+                "t": "set",
+                "p": "is_alerting",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 360,
+        "wires": [
+            [
+                "6640230.eaa48dc"
+            ]
+        ]
+    },
+    {
+        "id": "aa74d898.067988",
+        "type": "inject",
+        "z": "9a16543d.7ea5d8",
+        "name": "stop alarm",
+        "topic": "",
+        "payload": "stopaudio",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 740,
+        "wires": [
+            [
+                "4b2bdfa6.51f43",
+                "2e64a6f6.799b0a"
+            ]
+        ]
+    },
+    {
+        "id": "4b2bdfa6.51f43",
+        "type": "change",
+        "z": "9a16543d.7ea5d8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "is_alerting",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 760,
+        "wires": [
+            [
+                "752b326f.c58c3c"
+            ]
+        ]
+    },
+    {
+        "id": "6640230.eaa48dc",
+        "type": "function",
+        "z": "9a16543d.7ea5d8",
+        "name": "payload : (",
+        "func": "var device_message = msg.device_message\n\nreturn { payload: device_message };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 930,
+        "y": 360,
+        "wires": [
+            [
+                "ae2dfde5.24b52",
+                "578b6f7.91b919"
+            ]
+        ]
+    },
+    {
+        "id": "2e64a6f6.799b0a",
+        "type": "function",
+        "z": "9a16543d.7ea5d8",
+        "name": "stop resending",
+        "func": "\nreturn { reset: true };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 300,
+        "y": 720,
+        "wires": [
+            [
+                "ae2dfde5.24b52"
+            ]
+        ]
+    },
+    {
+        "id": "3b8cb504.0e643a",
+        "type": "debug",
+        "z": "9a16543d.7ea5d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 910,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fa7f7eeb.1339d",
+        "type": "websocket in",
+        "z": "9a16543d.7ea5d8",
+        "name": "websocket in",
+        "server": "fb12b315.96fa3",
+        "client": "",
+        "x": 110,
+        "y": 860,
+        "wires": [
+            [
+                "9dbf95d9.6b0508"
+            ]
+        ]
+    },
+    {
+        "id": "4a8a18e.0f749e8",
+        "type": "debug",
+        "z": "9a16543d.7ea5d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 370,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "ed7381ef.ae0d6",
+        "type": "websocket out",
+        "z": "9a16543d.7ea5d8",
+        "name": "websocket out",
+        "server": "e97bc8f2.cbc928",
+        "client": "",
+        "x": 1020,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "9dbf95d9.6b0508",
+        "type": "function",
+        "z": "9a16543d.7ea5d8",
+        "name": "handle client request",
+        "func": "const payload = JSON.parse(msg.payload);\nconst action = payload.action;\nconst commId = payload.commId;\nconst pin = payload.pin;\n\nconst valid_pin = '1969';\n\nif (action === \"context\") {\n    var status = global.get(\"is_armed\") ? \"armed\" : \"disarmed\";\n    var alert = global.get(\"is_alerting\");\n    \n    return { payload: { action: \"context\", status: status, alert: alert } }\n}\n\nif (action === \"arm\") {\n    if (pin === valid_pin) {\n         global.set(\"is_armed\", true);\n        return { payload: { action: \"set_status\", value: \"armed\" } };\n    }\n    \n    return { payload: { error: \"Invalid PIN\", commId: commId } };\n}\n\nif (action === \"disarm\") {\n    if (pin === valid_pin) {\n        global.set(\"is_armed\", false);\n        global.set(\"is_alerting\", false);\n        return { payload: { action: \"set_status\", value: \"disarmed\"} };\n    }\n    \n    return { payload: { error: \"Invalid PIN\", commId: commId } };\n}\n\nif (action === \"alarm\") {\n    return { payload: { action: \"setAlarm\", value: true} };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 160,
+        "y": 920,
+        "wires": [
+            [
+                "4a8a18e.0f749e8",
+                "ed7381ef.ae0d6",
+                "33acecce.182cc4"
+            ]
+        ]
+    },
+    {
+        "id": "578b6f7.91b919",
+        "type": "function",
+        "z": "9a16543d.7ea5d8",
+        "name": "alert client",
+        "func": "const payload = { payload: \"alert\", device_message: msg.device_message  };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1010,
+        "y": 800,
+        "wires": [
+            [
+                "ed7381ef.ae0d6"
+            ]
+        ]
+    },
+    {
+        "id": "33acecce.182cc4",
+        "type": "function",
+        "z": "9a16543d.7ea5d8",
+        "name": "stop resending?",
+        "func": "console.log('OK',JSON.stringify(msg));\nconst payload = msg.payload;\nconst error = payload.error;\nconst action = payload.action;\nconst value = payload.value;\n\nif (!error && action === 'set_status' && value === 'disarmed') {\n    return { reset: true };\n}\nreturn false;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 840,
+        "wires": [
+            [
+                "ae2dfde5.24b52"
+            ]
+        ]
+    },
+    {
+        "id": "da764640.ca5a38",
+        "type": "debug",
+        "z": "9a16543d.7ea5d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 380,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "cdeaaf1a.ed1a8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "192.168.68.108",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "true",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "true",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "true",
+        "willPayload": ""
+    },
+    {
+        "id": "fb12b315.96fa3",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/send",
+        "wholemsg": "false"
+    },
+    {
+        "id": "e97bc8f2.cbc928",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/receive",
+        "wholemsg": "false"
+    }
+]
