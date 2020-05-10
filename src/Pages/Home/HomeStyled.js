@@ -4,7 +4,10 @@ const HomeContainer = styled.div`
     display: flex;
     justify-content: center;
     height: 100%;
-    padding: 0 17em;
+
+    @media (max-width: 768px) {
+      font-size: small;
+    }
 `;
 
 const ButtonContainer = styled.div`

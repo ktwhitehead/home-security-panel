@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import SocketContext from '../Context/SocketContext';
 import AppContext from '../Context/AppContext';
 import SocketMessageHandler from './SocketMessageHandler';

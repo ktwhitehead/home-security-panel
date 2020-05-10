@@ -57,6 +57,10 @@ const Wrapper = styled.div`
     height: 100%;
     overflow: auto;
     background-color: ${props => props.theme.colors.dark.primary};
+
+    @media (max-width: 375px) {
+      font-size: x-small;
+    }
 `;
 
 const Row = styled.div`

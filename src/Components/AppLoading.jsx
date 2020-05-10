@@ -7,7 +7,7 @@ const AppLoading = ({children}) => {
     if (connected) {
         return <>{children}</>
     } else {
-        return <h1>Connecting to Server...</h1>
+        return <div>Connecting to Server...</div>
     }
 };
 
