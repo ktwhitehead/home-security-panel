@@ -2,7 +2,8 @@ import { useContext, useEffect } from 'react';
 import AppContext from '../Context/AppContext';
 
 const SocketMessageHandler = ({ message }) => {
-    const { setStatus, setAlert, setAlertMessage, setDisplayPinPad } = useContext(AppContext);
+    const { setStatus, setAlert, setAlertMessage, setDisplayPinPad, speaker } = useContext(AppContext);
+    const messages = { 'armed': 'System armed.', 'disarmed': 'System disarmed.' };
 
     useEffect(() => {
         if (message === undefined) return;
@@ -16,13 +17,18 @@ const SocketMessageHandler = ({ message }) => {
 
         if (message.action === 'set_status') {
             setStatus(message.value);
-            if (message.value === 'disarmed') setAlert(false);
+            if (message.value === 'disarmed') {
+              setAlert(false);
+              speaker.stopAlert();
+            }
             setDisplayPinPad(false);
+            speaker.say(messages[message.value]);
             return;
         }
 
         if (message.action === 'alert') {
             setAlert(true);
+            speaker.alert(message.device_message);
             setAlertMessage(message.device_message);
             setDisplayPinPad(false);
             return;

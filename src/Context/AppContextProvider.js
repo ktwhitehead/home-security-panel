@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import AppContext from './AppContext';
+import Speaker from '../Speaker';
+
+const speaker = new Speaker();
 
 const AppContextProvider = ({children}) => {
     const [status, setStatus] = useState('disarmed');
@@ -21,7 +24,8 @@ const AppContextProvider = ({children}) => {
         displayPinPad,
         setDisplayPinPad,
         pin,
-        setPin
+        setPin,
+        speaker
     };
 
     return <AppContext.Provider value={context}>{children}</AppContext.Provider>
