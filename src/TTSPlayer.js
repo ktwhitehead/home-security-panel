@@ -1,8 +1,7 @@
 class TTSPlayer {
   constructor() {
     this.synth = window.speechSynthesis;
-    const voices = this.synth.getVoices();
-    this.voice = voices.find(voice => voice.name === 'Google US English') || voices[0];
+    this.loadVoice();
   }
 
   say(text, onend) {
@@ -10,6 +9,15 @@ class TTSPlayer {
     utter.onend = onend;
     utter.voice = this.voice;
     this.synth.speak(utter);
+  }
+
+  loadVoice() {
+    const voices = this.synth.getVoices();
+    this.voice = voices.find(voice => voice.name === 'Google US English') || voices[0];
+
+    if(!this.voice) {
+      setTimeout(() => this.loadVoice());
+    }
   }
 }
 
