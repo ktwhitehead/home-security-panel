@@ -4,8 +4,8 @@ import useWebSocket from '../Hooks/useWebSocket';
 
 const SocketContextProvider = ({children}) => {
     // Node red requires separate socket connections for sending and receiving
-    const { socket, setOnOpen } = useWebSocket('ws://192.168.68.108:1880/send');
-    const { setOnMessage, setOnClose } = useWebSocket('ws://192.168.68.108:1880/receive');
+    const { socket, setOnOpen } = useWebSocket('ws://192.168.68.106:1880/send');
+    const { setOnMessage, setOnClose } = useWebSocket('ws://192.168.68.106:1880/receive');
     const [message, setMessage] = useState();
 
     const context = { socket, setOnOpen, setOnClose, setOnMessage, message, setMessage };

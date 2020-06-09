@@ -217,7 +217,7 @@ module.exports = {
         // os:require('os'),
         // jfive:require("johnny-five"),
         // j5board:require("johnny-five").Board({repl:false})
-		is_armed: true,
+		is_armed: false,
 		is_alerting: false,
 		device_messages: {
 			"94100E": "Garage Door Closed",

@@ -36,9 +36,10 @@ const SocketMessageHandler = ({ message }) => {
 
         if (message.action === 'notify') {
             speaker.say(message.notification);
+            return;
         }
 
-        console.warn("UNKNOWN MESSAGE", message);
+        console.warn("UNKNOWN MESSAGE", message.action);
     }, [message]);
 
     return null;
