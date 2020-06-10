@@ -51,7 +51,7 @@ function useWebSocket(url) {
             console.log('WebSocket disconnected.')
             if (isReconnectionEnable.current)
                 setTimeout(() => {
-                    console.log("Websocket attempting to reconnect.");
+                    console.log("Websocket is attempting to reconnect.");
                     reconnect();
                 }, reconnectInterval.current);
         }

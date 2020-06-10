@@ -8,6 +8,14 @@ export default [
         }
     },
     {
+        page: "Status",
+        attributes: {
+            path: '/status',
+            exact: true,
+            strict: true
+        }
+    },
+    {
         page: "NotFound",
         attributes: {}
     }

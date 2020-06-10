@@ -4,7 +4,7 @@ import AppContext from '../Context/AppContext';
 import SocketMessageHandler from './SocketMessageHandler';
 
 const SocketManager = () => {
-    const { socket, setOnMessage, setOnOpen, setOnClose, message, setMessage } = useContext(SocketContext);
+    const { setOnMessage, setOnOpen, setOnClose, message, setMessage } = useContext(SocketContext);
     const { setConnected } = useContext(AppContext);
 
     setOnMessage((message) => {
@@ -13,7 +13,6 @@ const SocketManager = () => {
     });
 
     setOnOpen(() => {
-        socket.sendMessage({action: 'context'});
         setConnected(true);
     });
 

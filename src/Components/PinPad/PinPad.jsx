@@ -10,7 +10,6 @@ const commId = Math.round(Date.now() * Math.random());
 const PinPad = ({action}) => {
     const { displayPinPad, setDisplayPinPad, pin, setPin } = useContext(AppContext);
     const { socket, message } = useContext(SocketContext);
-    // const commId = Math.round(Date.now() * Math.random());
     const [errorMessage, setErrorMessage] = useState();
 
     useEffect(() => {
@@ -38,7 +37,7 @@ const PinPad = ({action}) => {
             </Header>
             <Body>
                 <Pin>
-                    {pin.split('').map(number => <PinNumber number={number} />)}
+                    {pin.split('').map(number => <PinNumber key={`pin-number-${number}`} number={number} />)}
                 </Pin>
                 <Pad />
             </Body>

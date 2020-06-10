@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import StatusStyled from './StatusStyled';
+import StatusMessageStyled from './StatusMessageStyled';
 import AppContext from '../../Context/AppContext';
 
-const Status = () => {
+const StatusMessage = () => {
     const { status } = useContext(AppContext);
     const FULLSTATUS = {
         'disarmed': 'Ready to Arm',
@@ -11,8 +11,8 @@ const Status = () => {
     }
 
     return (
-        <StatusStyled>{FULLSTATUS[status]}</StatusStyled>
+        <StatusMessageStyled>{FULLSTATUS[status]}</StatusMessageStyled>
     )
 };
 
-export default Status;
+export default StatusMessage;

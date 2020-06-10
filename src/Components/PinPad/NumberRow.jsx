@@ -5,7 +5,7 @@ import { Row } from './PinPadStyled';
 const NumberRow = ({numbers}) => {
     return (
         <Row>
-            {numbers.map(number => <PadNumber number={number} />)}
+            {numbers.map(number => <PadNumber key={`pad-number-${number}`} number={number} />)}
         </Row>
     )
 }

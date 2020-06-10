@@ -264,7 +264,29 @@ module.exports = {
 			"7241E0": "Hallway Motion Detected",
 			"253F0E": "BEDROOM DOOR",
 			"253F0A": "BEDROOM DOOR"
-		}
+        },
+        sensors: {
+            "94100": { "name": "Garage Door", "status": "Closed" },
+            "43890": { "name": "Patio Door", "status": "Closed" },
+            "93010": { "name": "Mudroom Door", "status": "Closed" },
+            "23E60": { "name": "Sunroom Door", "status": "Closed" },
+            "965F0": { "name": "Fireplace Door", "status": "Closed" },
+            "937A0": { "name": "Front Door", "status": "Closed" },
+            "97440": { "name": "Kitchen Window 1", "status": "Closed" },
+            "92510": { "name": "Kitchen Window 2 ", "status": "Closed" },
+            "4A3B0": { "name": "Bathroom Window", "status": "Closed" },
+            "1BBC0": { "name": "Basement Window 1", "status": "Closed" },
+            "1D4F0": { "name": "Basement Window 1", "status": "Closed" },
+            "972A0": { "name": "Mudroom Window", "status": "Closed" },
+            "83D30": { "name": "Dining Room Window 1", "status": "Closed" },
+            "93D30": { "name": "Dining Room Window 2", "status": "Closed" },
+            "96C70": { "name": "Dining Room Window 3", "status": "Closed" },
+            "92ED0": { "name": "Living Room Window 1", "status": "Closed" },
+            "97500": { "name": "Living Room Window 2", "status": "Closed" },
+            "924C0": { "name": "Living Room Window 3", "status": "Closed" },
+            "86F70": { "name": "Living Room Window 4", "status": "Closed" },
+            "253F0": { "name": "Bedroom Door", "status": "Closed" }
+        }
     },
     // `global.keys()` returns a list of all properties set in global context.
     // This allows them to be displayed in the Context Sidebar within the editor.

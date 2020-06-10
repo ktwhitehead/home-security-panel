@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ActionButtons from './ActionButtons';
 import { HomeContainer, ButtonContainer } from './HomeStyled';
-import Status from './Status';
+import StatusMessage from './StatusMessage';
 
 const Home = () => {
     return (
         <HomeContainer>
             <ButtonContainer>
-                <Status />
+                <StatusMessage />
                 <ActionButtons />
             </ButtonContainer>
         </HomeContainer>
