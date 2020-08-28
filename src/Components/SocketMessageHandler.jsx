@@ -7,39 +7,39 @@ const SocketMessageHandler = ({ message }) => {
 
     useEffect(() => {
         if (message === undefined) return;
+        const { action, silent, notification, device_message, value, id, sensor } = message;
 
-        if (message.action === 'set_status') {
-            setStatus(message.value);
-            if (message.value === 'disarmed') {
+        if (action === 'set_status') {
+            setStatus(value);
+            if (value === 'disarmed') {
               setAlert(false);
               speaker.stopAlert();
             }
             setDisplayPinPad(false);
-            speaker.say(messages[message.value]);
+            if (!silent) speaker.say(messages[value]);
             return;
         }
 
-        if (message.action === 'alert') {
+        if (action === 'alert') {
             setAlert(true);
-            speaker.alert(message.device_message);
-            setAlertMessage(message.device_message);
+            speaker.alert(device_message);
+            setAlertMessage(device_message);
             setDisplayPinPad(false);
             return;
         }
 
-        if (message.action === 'notify') {
-            speaker.say(message.notification);
+        if (action === 'notify') {
+            speaker.say(notification);
             return;
         }
 
-        if (message.action === 'sensor_status') {
-            const { id, sensor } = message;
+        if (action === 'sensor_status') {
             sensors[id] = sensor;
             setSensors({...sensors});
             return;
         }
 
-        console.warn("UNKNOWN MESSAGE", message.action);
+        console.warn("UNKNOWN MESSAGE", action);
     }, [message]);
 
     return null;

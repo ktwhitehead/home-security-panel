@@ -15,7 +15,7 @@ const AppContextProvider = ({children}) => {
 
     useEffect(() => {
         const getAppContext = async () => {
-            const request = await fetch('http://192.168.68.106:1880/context');
+            const request = await fetch('http://192.168.68.101:1880/context');
             const context = await request.json();
             setStatus(context.status);
             setAlert(context.alert);
