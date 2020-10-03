@@ -1,19 +1,10 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 
-function useWebSocket(url) {
+const useWebSocket = (url) => {
     const [isConnected, setConnected] = useState(false);
     const [socket, setSocket] = useState(null);
 
-    const isReconnectionEnable = useRef(true);
-    const setReconnectionEnable = useCallback((newValue) => {
-        isReconnectionEnable.current = newValue;
-    }, []);
-
     const reconnectInterval = useRef(5000);
-    const setReconnectInterval = useCallback((newValue) => {
-        reconnectInterval.current = newValue;
-    }, []);
-
     const onOpen = useRef(() => { });
     const onClose = useRef(() => { });
     const onMessage = useRef(() => { });
@@ -49,11 +40,10 @@ function useWebSocket(url) {
             onClose.current(event);
             setConnected(false);
             console.log('WebSocket disconnected.')
-            if (isReconnectionEnable.current)
-                setTimeout(() => {
-                    console.log("Websocket is attempting to reconnect.");
-                    reconnect();
-                }, reconnectInterval.current);
+            setTimeout(() => {
+                console.log("Websocket is attempting to reconnect.");
+                reconnect();
+            }, reconnectInterval.current);
         }
         newSocket.sendMessage = (message) => {
             newSocket.send(JSON.stringify(message));
@@ -69,8 +59,6 @@ function useWebSocket(url) {
         socket,
         reconnect,
         isConnected, 
-        setReconnectionEnable,
-        setReconnectInterval,
         setOnOpen,
         setOnMessage,
         setOnClose,

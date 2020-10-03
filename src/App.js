@@ -8,13 +8,11 @@ import AppStyled from './AppStyled';
 import AppContextProvider from './Context/AppContextProvider';
 import SocketContextProvider from './Context/SocketContextProvider';
 import AppLoading from './Components/AppLoading';
-import SocketManager from './Components/SocketManager';
 
 const App = () => {
   return (
     <AppContextProvider>
       <SocketContextProvider>
-        <SocketManager />
         <ThemeProvider theme={theme}>
           <AppStyled>
             <BrowserRouter>
