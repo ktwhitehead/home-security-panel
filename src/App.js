@@ -7,7 +7,7 @@ import theme from './Theme';
 import AppStyled from './AppStyled';
 import AppContextProvider from './Context/AppContextProvider';
 import SocketContextProvider from './Context/SocketContextProvider';
-import AppLoading from './Components/AppLoading';
+import Loading from './Pages/Loading';
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <AppStyled>
             <BrowserRouter>
-              <AppLoading>
+              <Loading>
               <Switch>
                 {routes.map(route => {
                   const { attributes, page } = route;
@@ -26,7 +26,7 @@ const App = () => {
                   )
                 })}
               </Switch>
-              </AppLoading>
+              </Loading>
             </BrowserRouter>
           </AppStyled>
         </ThemeProvider>

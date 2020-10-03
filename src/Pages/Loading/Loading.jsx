@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import AppContext from '../Context/AppContext';
-import Loader from '../Components/Loader';
+import AppContext from '../../Context/AppContext';
+import Loader from '../../Components/Loader';
 
-const AppLoading = ({children}) => {
+const Loading = ({children}) => {
     const { connected } = useContext(AppContext);
 
     if (connected) {
@@ -12,4 +12,4 @@ const AppLoading = ({children}) => {
     }
 };
 
-export default AppLoading;
+export default Loading;
