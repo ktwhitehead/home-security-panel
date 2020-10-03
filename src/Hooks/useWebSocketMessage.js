@@ -1,8 +1,9 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AppContext from '../Context/AppContext';
 
-const SocketMessageHandler = ({ message }) => {
+const useWebSocketMessageHandler = () => {
     const { setStatus, setAlert, setAlertMessage, setDisplayPinPad, speaker, sensors, setSensors } = useContext(AppContext);
+    const [message, setMessage] = useState();
     const messages = { 'armed': 'System armed.', 'disarmed': 'System disarmed.' };
 
     useEffect(() => {
@@ -42,7 +43,7 @@ const SocketMessageHandler = ({ message }) => {
         console.warn("UNKNOWN MESSAGE", action);
     }, [message]);
 
-    return null;
+    return { message, setMessage };
 }
 
-export default SocketMessageHandler;
+export default useWebSocketMessageHandler;

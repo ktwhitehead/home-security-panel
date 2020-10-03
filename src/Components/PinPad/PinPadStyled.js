@@ -38,7 +38,8 @@ const Number = styled.div`
     padding: ${props => props.type === 'pad' ? '0.4em 1em' : '0 0.7em'};
     color: ${props => props.theme.colors.light.primary};
     font-size: 4em;
-    font-weight: ${props => props.type === 'pad' ? 'bold' : 'initial'}
+    font-weight: ${props => props.type === 'pad' ? 'bold' : 'initial'};
+    cursor: pointer;
 `;
 
 const Message = styled.div`
