@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../Context/AppContext';
+import Loader from '../Components/Loader';
 
 const AppLoading = ({children}) => {
     const { connected } = useContext(AppContext);
@@ -7,7 +8,7 @@ const AppLoading = ({children}) => {
     if (connected) {
         return <>{children}</>
     } else {
-        return <div>Connecting to Server...</div>
+        return <Loader />
     }
 };
 
