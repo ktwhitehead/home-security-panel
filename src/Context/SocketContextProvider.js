@@ -4,11 +4,11 @@ import useWebSocket from '../Hooks/useWebSocket';
 import useWebSocketMessage from '../Hooks/useWebSocketMessage';
 import AppContext from './AppContext';
 
-const SocketContextProvider = ({children}) => {
+const url = process.env.REACT_APP_WS_URL;
+
+const SocketContextProvider = ({ children }) => {
     const { setConnected } = useContext(AppContext);
-    // Node red requires separate socket connections
-    const { socket, setOnOpen } = useWebSocket('ws://192.168.68.101:1880/send');
-    const { setOnMessage, setOnClose } = useWebSocket('ws://192.168.68.101:1880/receive');
+    const { socket, setOnMessage, setOnOpen, setOnClose } = useWebSocket(url);
     const { message, setMessage } = useWebSocketMessage();
 
     setOnMessage((message) => {

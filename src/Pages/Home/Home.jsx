@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import ActionButtons from './ActionButtons';
+import React from 'react';
+import StatusButtons from './StatusButtons';
 import { HomeContainer, ButtonContainer } from './HomeStyled';
 import StatusMessage from './StatusMessage';
 
@@ -8,7 +8,7 @@ const Home = () => {
         <HomeContainer>
             <ButtonContainer>
                 <StatusMessage />
-                <ActionButtons />
+                <StatusButtons />
             </ButtonContainer>
         </HomeContainer>
     )

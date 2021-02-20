@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import AppContext from '../Context/AppContext';
 
 const useWebSocketMessageHandler = () => {
-    const { setStatus, setAlert, setAlertMessage, setDisplayPinPad, speaker, sensors, setSensors } = useContext(AppContext);
+    const { setStatus, setAlert, setAlertMessage, speaker, sensors, setSensors } = useContext(AppContext);
     const [message, setMessage] = useState();
-    const messages = { 'armed': 'System armed.', 'disarmed': 'System disarmed.' };
+    const messages = { 'armed_stay': 'System armed.', 'armed_away': 'System armed.', 'disarmed': 'System disarmed.' };
 
     useEffect(() => {
         if (message === undefined) return;
@@ -16,7 +16,6 @@ const useWebSocketMessageHandler = () => {
               setAlert(false);
               speaker.stopAlert();
             }
-            setDisplayPinPad(false);
             if (!silent) speaker.say(messages[value]);
             return;
         }
@@ -25,7 +24,6 @@ const useWebSocketMessageHandler = () => {
             setAlert(true);
             speaker.alert(device_message);
             setAlertMessage(device_message);
-            setDisplayPinPad(false);
             return;
         }
 

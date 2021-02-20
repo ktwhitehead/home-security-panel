@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AppContext from './AppContext';
 import Speaker from '../Audio/Speaker';
+import client from '../ApiClient';
 
 const speaker = new Speaker();
 
@@ -9,18 +10,14 @@ const AppContextProvider = ({children}) => {
     const [alert, setAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState();
     const [connected, setConnected] = useState(false);
-    const [displayPinPad, setDisplayPinPad] = useState(false);
-    const [pin, setPin] = useState('');
     const [sensors, setSensors] = useState();
 
     useEffect(() => {
         const getAppContext = async () => {
-            const request = await fetch('http://192.168.68.101:1880/context');
-            const context = await request.json();
+            const context = await client.getContext();
             setStatus(context.status);
             setAlert(context.alert);
             setSensors(context.sensors);
-            setDisplayPinPad(false);
         }
         getAppContext();
     }, []);
@@ -34,10 +31,6 @@ const AppContextProvider = ({children}) => {
         setAlert,
         alertMessage,
         setAlertMessage,
-        displayPinPad,
-        setDisplayPinPad,
-        pin,
-        setPin,
         speaker,
         sensors,
         setSensors
