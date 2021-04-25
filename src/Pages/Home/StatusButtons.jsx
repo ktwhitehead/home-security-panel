@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import Button from '../../Components/Button';
 import AppContext from '../../Context/AppContext';
 import PinPad from '../../Components/PinPad';
-import * as client from '../../ApiClient';
+import client from '../../ApiClient';
 
 const StatusButtons = () => {
   const { status, setStatus } = useContext(AppContext);

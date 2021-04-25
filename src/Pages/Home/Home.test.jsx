@@ -1,18 +1,11 @@
 import React from 'react';
 import Home from './Home';
 import withContext from '../../Test';
-import { render, fireEvent, waitFor, wait } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'
 import { statusMessages } from './StatusMessage';
-import client from '../../ApiClient';
-
-jest.mock('../../ApiClient');
 
 describe('Home', () => {
-  // beforeAll(() => {
-  //   Utils.callAnotherLambdaFunction = jest.fn().mockResolvedValue('test');
-  // });
-
   it('displays the home page and current status', () => {
     const currentStatus = 'disarmed';
     const { getByTestId } = render(withContext(<Home />, { status: currentStatus }));
