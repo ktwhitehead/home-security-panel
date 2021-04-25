@@ -2,7 +2,7 @@ import React from 'react';
 import * as pages from './Pages';
 import routes from './Routes';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/macro';
 import theme from './Theme';
 import AppStyled from './AppStyled';
 import AppContextProvider from './Context/AppContextProvider';

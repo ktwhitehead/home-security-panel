@@ -9,31 +9,31 @@ const PinPad = ({ display, setDisplay, errorMessage, setErrorMessage, onPinEnter
   useEffect(() => {
     if (pin.length === 1) setErrorMessage();
     if (pin.length >= 4) {
-        onPinEntered(pin);
-        setPin('');
+      onPinEntered(pin);
+      setPin('');
     }
   }, [pin]);
 
   const closePinPad = () => {
     setDisplay(false);
     setErrorMessage();
-  }
+  };
 
   return (
-      <Wrapper visible={display}>
-          <Header>
-              <Close style={{visibility: 'hidden'}}>x</Close>
-              <Message>{errorMessage}</Message>
-              <Close onClick={closePinPad}>x</Close>
-          </Header>
-          <Body>
-              <Pin>
-                  {pin.split('').map((number, i) => <PinNumber key={`pin-number-${number}-${i}`} number={number} />)}
-              </Pin>
-              <Pad pin={pin} setPin={setPin} />
-          </Body>
-      </Wrapper>
-  )
+    <Wrapper visible={display} data-testid="PinPad">
+      <Header>
+        <Close style={{visibility: 'hidden'}}>x</Close>
+        <Message data-testid="PinPadError">{errorMessage}</Message>
+        <Close onClick={closePinPad} data-testid="ClosePinPad">x</Close>
+      </Header>
+      <Body>
+        <Pin data-testid={"EnteredPinNumber"}>
+          {pin.split('').map((number, i) => <PinNumber key={`pin-number-${number}-${i}`} number={number} />)}
+        </Pin>
+        <Pad pin={pin} setPin={setPin} />
+      </Body>
+    </Wrapper>
+  );
 };
 
 export default PinPad;

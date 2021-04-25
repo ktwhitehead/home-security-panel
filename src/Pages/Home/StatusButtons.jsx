@@ -34,10 +34,10 @@ const StatusButtons = () => {
         onPinEntered={onPinEntered}
       />
       {status === 'disarmed' && (
-        <Button text="Armed Stay" primary onClick={() => statusButtonClicked('armed_stay') } />
+        <Button testId="ArmStayButton" text="Arm Stay" primary onClick={() => statusButtonClicked('armed_stay') } />
       )}
       {(status === 'armed_stay' || status === 'armed_away') && (
-        <Button text="Disarm" primary onClick={() => statusButtonClicked('disarmed') } />
+        <Button testId="DisarmButton" text="Disarm" primary onClick={() => statusButtonClicked('disarmed') } />
       )}
     </>
   )

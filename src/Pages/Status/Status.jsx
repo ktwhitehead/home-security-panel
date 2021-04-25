@@ -1,26 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../../Context/AppContext';
-import styled from 'styled-components';
 import pickBy from 'lodash/pickBy';
-
-const StatusWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const StatusColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Header = styled.h2`
-    color: ${props => props.theme.colors.light.primary}
-`;
-
-const Sensor = styled.p`
-    color: ${props => props.theme.colors.light.primary};
-    margin: 0.15em;
-`
+import { StatusColumn, StatusWrapper, Header, Sensor } from './Status.styled';
 
 const Status = () => {
     const { sensors } = useContext(AppContext);

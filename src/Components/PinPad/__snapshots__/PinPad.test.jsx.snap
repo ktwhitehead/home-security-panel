@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PinPad matches the expected styling 1`] = `
+<div
+  class="PinPadStyled__Wrapper-sc-1k5gjku-6 knRLMV"
+  data-testid="PinPad"
+>
+  <div
+    class="PinPadStyled__Header-sc-1k5gjku-8 eaZouw"
+  >
+    <div
+      class="PinPadStyled__Close-sc-1k5gjku-1 dtzUzz"
+      style="visibility: hidden;"
+    >
+      x
+    </div>
+    <div
+      class="PinPadStyled__Message-sc-1k5gjku-5 jEQlPV"
+      data-testid="PinPadError"
+    />
+    <div
+      class="PinPadStyled__Close-sc-1k5gjku-1 dtzUzz"
+      data-testid="ClosePinPad"
+    >
+      x
+    </div>
+  </div>
+  <div
+    class="PinPadStyled__Body-sc-1k5gjku-0 kqmgaY"
+  >
+    <div
+      class="PinPadStyled__Pin-sc-1k5gjku-3 dCNkGn"
+      data-testid="EnteredPinNumber"
+    />
+    <div
+      class="PinPadStyled__Rows-sc-1k5gjku-2 hgfPBA"
+    >
+      <div
+        class="PinPadStyled__Row-sc-1k5gjku-7 jSQshO"
+      >
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-1"
+          type="pad"
+        >
+          1
+        </div>
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-2"
+          type="pad"
+        >
+          2
+        </div>
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-3"
+          type="pad"
+        >
+          3
+        </div>
+      </div>
+      <div
+        class="PinPadStyled__Row-sc-1k5gjku-7 jSQshO"
+      >
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-4"
+          type="pad"
+        >
+          4
+        </div>
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-5"
+          type="pad"
+        >
+          5
+        </div>
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-6"
+          type="pad"
+        >
+          6
+        </div>
+      </div>
+      <div
+        class="PinPadStyled__Row-sc-1k5gjku-7 jSQshO"
+      >
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-7"
+          type="pad"
+        >
+          7
+        </div>
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-8"
+          type="pad"
+        >
+          8
+        </div>
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-9"
+          type="pad"
+        >
+          9
+        </div>
+      </div>
+      <div
+        class="PinPadStyled__Row-sc-1k5gjku-7 jSQshO"
+      >
+        <div
+          class="PinPadStyled__Number-sc-1k5gjku-4 hQrIYu"
+          data-testid="PadNumber-0"
+          type="pad"
+        >
+          0
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

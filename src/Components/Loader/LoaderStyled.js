@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components/macro';
 
 const colors = ['#49b8e5', '#1e98d4', '#2a92d0', '#3a88c8', '#507cbe'];
 

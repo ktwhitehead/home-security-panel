@@ -5,7 +5,7 @@ const client = {
     try {
       const request = await fetch(`${url}/context`, { method: 'GET' });
       const response = await request.json();
-
+  
       return response;
     } catch(error) {
       return { error };
