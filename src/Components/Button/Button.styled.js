@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 const ButtonStyled = styled.button`
     background-color: ${props => props.primary ? props.theme.colors.dark.secondary : props.theme.colors.dark.tertiary };

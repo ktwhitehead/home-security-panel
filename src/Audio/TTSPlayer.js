@@ -12,8 +12,8 @@ class TTSPlayer {
   }
 
   loadVoice() {
-    const voices = this.synth.getVoices();
-    this.voice = voices.find(voice => voice.name === 'Google US English') || voices[0];
+    const voices = this.synth?.getVoices() || [];
+    this.voice = voices?.find(voice => voice.name === 'Google US English') || voices[0];
 
     if(!this.voice) {
       setTimeout(() => this.loadVoice());

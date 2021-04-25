@@ -4,14 +4,14 @@ import { HomeContainer, ButtonContainer } from './HomeStyled';
 import StatusMessage from './StatusMessage';
 
 const Home = () => {
-    return (
-        <HomeContainer>
-            <ButtonContainer>
-                <StatusMessage />
-                <StatusButtons />
-            </ButtonContainer>
-        </HomeContainer>
-    )
+  return (
+    <HomeContainer data-testid="HomePage">
+      <ButtonContainer>
+        <StatusMessage />
+        <StatusButtons />
+      </ButtonContainer>
+    </HomeContainer>
+  )
 };
 
 export default Home;

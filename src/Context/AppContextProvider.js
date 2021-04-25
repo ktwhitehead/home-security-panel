@@ -13,13 +13,13 @@ const AppContextProvider = ({children}) => {
     const [sensors, setSensors] = useState();
 
     useEffect(() => {
-        const getAppContext = async () => {
-            const context = await client.getContext();
-            setStatus(context.status);
-            setAlert(context.alert);
-            setSensors(context.sensors);
-        }
-        getAppContext();
+      const getAppContext = async () => {
+        const context = await client.getContext();
+        setStatus(context.status);
+        setAlert(context.alert);
+        setSensors(context.sensors);
+      }
+      getAppContext();
     }, []);
 
     const context = {
